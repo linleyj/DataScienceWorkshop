@@ -60,3 +60,18 @@ devtools::install_github("ropensci/clifro")
 ## emoji package
 devtools::install_github("hadley/emo")
 ```
+
+## 3 Trouble Shooting on Ubuntu 16
+
+### RStudio not Working
+
+On Ubutu 16+ the RStudio desktop version does not work due to missing deprecated dependencies. There are two options:
+
+- Install RStudio server and run it by using your browser (http://localhost:8787)
+- Use this receipe to install the missing dependencies (click)[http://stackoverflow.com/questions/38172943/r-studio-not-working-on-ubuntu-16-04(click)]
+When using a fresh Ubuntu 16 install you might find that the dependencies XML and OpenSSL are missing. Before using the above receipe type the following:
+
+```
+sudo apt-get install libssl-dev
+sudo apt-get install libxml2-dev
+```
