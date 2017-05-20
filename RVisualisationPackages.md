@@ -68,7 +68,7 @@ devtools::install_github("hadley/emo")
 On Ubutu 16+ the RStudio desktop version does not work due to missing deprecated dependencies. There are two options:
 
 - Install RStudio server and run it by using your browser (http://localhost:8787)
-- Use this receipe to install the missing dependencies (click)[http://stackoverflow.com/questions/38172943/r-studio-not-working-on-ubuntu-16-04(click)]
+- Use this receipe at the bottom of the threat to install the missing dependencies [Stackoverflow]([http://stackoverflow.com/questions/38172943/r-studio-not-working-on-ubuntu-16-04)
 
 ### System dependencies
 
