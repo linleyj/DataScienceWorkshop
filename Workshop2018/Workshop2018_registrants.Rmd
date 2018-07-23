@@ -1,0 +1,47 @@
+---
+title: "Registrants"
+author: "Linley Jesson"
+date: "23 July 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(RCurl)
+library(XML)
+library(data.table)
+library(tidyverse)
+```
+
+```{r}
+
+URL <- "https://iplant.plantandfood.co.nz/Team/sp/DataSci/_vti_bin/owssvr.dll?XMLDATA=1&List={7DBA0F40-95BD-464C-B942-B727BD1766C1}&View={08A127CF-DEBC-43DA-BD82-19221823128B}&RowLimit=0&RootFolder=%2fTeam%2fsp%2fDataSci%2fLists%2fData%20Science%20Registration"
+domain <- "PFR"
+USER <- Sys.getenv("USERNAME")
+password <- getPass::getPass(paste0(USER,", please enter the password for your account"))
+userpwd <- paste(paste(domain, USER, sep="\\"), password, sep=":")
+rawData <- getURL(URL, userpwd = userpwd)
+xmlData <- xmlParse (rawData, options=HUGE, useInternalNodes=TRUE)
+dataList <- xmlToList(xmlRoot(xmlData)[["data"]])
+dataMatrix <- do.call(rbind,dataList)
+finalDataTable <- data.table(dataMatrix) %>% 
+  separate(ows_Names, into = c("Number","Name"), sep=";#")
+head(finalDataTable)
+
+```
+
+```{r}
+finalDataTable %>% 
+  filter(ows_I_x0020_need_x0020_assistance_x0==
+           "Yes") %>% 
+  select(Name) %>% 
+  write.table(.,"Registrants.txt", quote=F, row.names = F)
+```
+
+```{r}
+finalDataTable %>%
+  select(Name) %>% 
+  write.table(.,"AllRegistrants.txt", quote=F, row.names = F)
+```
+
+
