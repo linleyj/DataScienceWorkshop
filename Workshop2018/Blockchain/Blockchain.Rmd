@@ -94,3 +94,9 @@ Key technical features:
 ## Hyperledger composer
 
 [Hyperledger Composer](https://composer-playground.mybluemix.net/editor "Hyperledger composer")
+
+## Oraclize.it
+
+[Oraclize it](http://www.oraclize.it/ "Oraclise.it")
+
+
